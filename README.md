@@ -63,18 +63,19 @@ Ensure you have the following installed on your machine:
     npm run dev
     Open in browser:
     Navigate to http://localhost:3000 to view the application.
-   ```
 
-Project Structure
-Plaintext
-├── app/
-│ ├── (components)/ # Reusable UI components (Nav, TicketCard, DeleteBlock, etc.)
-│ ├── api/ # Next.js API route handlers (GET, POST, PUT, DELETE)
-│ │ └── Tickets/
-│ ├── TicketPage/[id]/ # Dynamic edit/create route
-│ ├── global.css # Custom Tailwind v4 styling & theme toggle
-│ ├── layout.js # Root layout wrapper
-│ └── page.jsx # Main dashboard displaying categorized tickets
-├── models/ # Mongoose schema definitions (Ticket.js)
-├── .env.example # Example environment template
-└── .env.local # Local secret keys (ignored by Git)
+
+    Project Structure
+    Plaintext
+    ├── app/
+    │   ├── (components)/      # Reusable UI components (Nav, TicketCard, DeleteBlock, etc.)
+    │   ├── api/               # Next.js API route handlers (GET, POST, PUT, DELETE)
+    │   │   └── Tickets/
+    │   ├── TicketPage/[id]/   # Dynamic edit/create route
+    │   ├── global.css         # Custom Tailwind v4 styling & theme toggle
+    │   ├── layout.js          # Root layout wrapper
+    │   └── page.jsx           # Main dashboard displaying categorized tickets
+    ├── models/                # Mongoose schema definitions (Ticket.js)
+    ├── .env.example           # Example environment template
+    └── .env.local             # Local secret keys (ignored by Git)
+   ```
