@@ -1,64 +1,149 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
+@theme {
+  --color-nav: var(--bg-nav);
+  --color-page: var(--bg-page);
+  --color-card: var(--bg-card);
+  --color-card-hover: var(--bg-card-hover);
+  --color-default-text: var(--text-main);
+  --color-muted-text: var(--text-muted);
+  --color-blue-accent: var(--accent);
+  --color-blue-accent-hover: var(--accent-hover);
+  --color-border-subtle: var(--border-color);
+}
 
-/* Base HTML element overrides */
+/* THEME DEFINITIONS */
+
+/* Default Dark Theme Variables */
+:root {
+  --bg-nav: #0b0f17;
+  --bg-page: #111827;
+  --bg-card: #1f2937;
+  --bg-card-hover: #374151;
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --accent: #0284c7;
+  --accent-hover: #38bdf8;
+  --border-color: #374151;
+  --input-bg: #030712;
+}
+
+/* Light Theme (Trigger - pure CSS when toggle is checked) */
+html:has(#theme-toggle:checked) {
+  --bg-nav: #ffffff;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --border-color: #e2e8f0;
+  --input-bg: #f1f5f9;
+}
+
+/*  GLOBAL BASE STYLES */
+body {
+  background-color: var(--color-page);
+  color: var(--color-default-text);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  min-height: 100vh;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Styled Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
 h1,
 h2,
 h3,
 h4 {
-  @apply font-bold;
+  @apply font-bold tracking-tight text-default-text;
 }
 
 h1 {
-  @apply text-4xl;
+  @apply text-3xl md:text-4xl;
 }
 h2 {
-  @apply text-3xl;
+  @apply text-2xl md:text-3xl;
 }
 h3 {
-  @apply text-2xl;
+  @apply text-xl md:text-2xl;
 }
 h4 {
-  @apply text-xl;
+  @apply text-lg;
 }
 
 p {
-  @apply text-sm text-default-text;
+  @apply text-sm text-muted-text leading-relaxed;
 }
 
+/* FORM & INPUT STYLING */
 form {
-  @apply rounded-xl p-4;
-}
-label {
-  @apply mt-4;
+  @apply bg-card border border-border-subtle shadow-xl rounded-2xl p-6 md:p-8 
+         transition-colors duration-200;
 }
 
-input,
+label {
+  @apply text-xs uppercase tracking-wider font-bold text-muted-text mt-4 mb-1.5 block;
+}
+
+input[type="text"],
 select,
 textarea {
-  @apply m-1 rounded bg-card p-1;
+  @apply w-full rounded-xl bg-(--input-bg) border border-border-subtle p-3 text-sm text-default-text 
+         placeholder:text-muted-text transition-all duration-200
+         focus:outline-none focus:ring-2 focus:ring-blue-accent focus:border-transparent;
 }
 
-.btn {
-  @apply hover:no-underline bg-blue-accent hover:bg-card-hover tracking-wider w-full text-center text-nav font-bold cursor-pointer uppercase px-4 py-2 rounded-md transition-colors block;
+input[type="range"] {
+  @apply accent-blue-accent cursor-pointer h-2 bg-border-subtle rounded-lg w-full;
 }
 
-/* Custom component utilities */
+input[type="radio"] {
+  @apply accent-blue-accent cursor-pointer w-4 h-4;
+}
+
+/* CUSTOM COMPONENT UTILITIES*/
 @utility icon {
-  @apply text-default-text text-xl;
+  @apply text-muted-text hover:text-default-text transition-colors duration-150 text-lg cursor-pointer;
 }
 
 @utility btn {
-  @apply hover:no-underline bg-blue-accent hover:bg-card-hover tracking-wider w-full text-center text-nav font-bold cursor-pointer uppercase px-4 py-2 rounded-md transition-colors block;
+  @apply bg-blue-accent hover:bg-blue-accent-hover text-white font-bold text-sm uppercase tracking-wider 
+         w-full text-center px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg hover:shadow-sky-500/20 
+         active:scale-[0.98] transition-all duration-150 cursor-pointer block border-none;
 }
-@theme {
-  /* Hex colors */
-  --color-nav: #18222f;
-  --color-page: #2b3441;
-  --color-card: #47566a;
-  --color-card-hover: #4f5e74;
-  --color-default-text: #f1f3f5;
-  --color-blue-accent: #0084d4;
-  --color-blue-accent-hover: #009fff;
+
+/* Status Badges */
+@utility badge-done {
+  @apply bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold tracking-wide;
+}
+
+@utility badge-started {
+  @apply bg-amber-500/15 text-amber-500 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-bold tracking-wide;
+}
+
+@utility badge-not-started {
+  @apply bg-rose-500/15 text-rose-500 border border-rose-500/30 px-3 py-1 rounded-full text-xs font-bold tracking-wide;
 }
