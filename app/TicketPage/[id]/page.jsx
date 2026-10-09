@@ -1,5 +1,34 @@
-const TicketPage = ({ params }) => {
-  return <div>TicketPage {params.id}</div>;
+export const dynamic = "force-dynamic";
+
+import TicketForm from "@/app/{components}/TicketForm";
+
+const getTicketById = async (id) => {
+  const res = await fetch(`http://localhost:3000/api/Tickets/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to get ticket.");
+  }
+  return res.json();
+};
+
+const TicketPage = async ({ params }) => {
+  const { id } = await params;
+
+  const EDITMODE = id === "new" ? false : true;
+  let updateTicketData = {};
+
+  if (EDITMODE) {
+    updateTicketData = await getTicketById(id);
+    updateTicketData = updateTicketData.foundTicket;
+  } else {
+    updateTicketData = {
+      _id: "new",
+    };
+  }
+
+  return <TicketForm ticket={updateTicketData} editMode={EDITMODE} />;
 };
 
 export default TicketPage;

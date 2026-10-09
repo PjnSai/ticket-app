@@ -43,4 +43,16 @@ yarn-error.log*
 next-env.d.ts
 
 # Virtual environment subfolders
+# Dependencies and Builds
+node_modules/
+.next/
+.env.local
+.env
+
+# Virtual Environment
+
 ./ticket-app/
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
