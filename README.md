@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ticket Management App
+
+A ticket management application built with **Next.js (App Router)**, **MongoDB**, **Mongoose**, and **Tailwind CSS**. Features a dynamic responsive dashboard, full CRUD operations, and a pure CSS light/dark mode theme toggle.
+
+---
+
+## Features
+
+- **Full CRUD Operations:** Create, view, edit, and delete support tickets in real time.
+- **Dynamic Dashboard:** Categorizes tickets automatically with progress bars, priority ratings, and status badges.
+- **Pure CSS Light/Dark Theme Toggle:** Seamlessly switch themes using modern CSS `:has()` pseudo-classes.
+- **Responsive UI:** Custom-styled glassmorphic dark interface with responsive layouts built using Tailwind CSS.
+- **Database Integration:** Persistent data storage using MongoDB Atlas and Mongoose schemas.
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Database:** MongoDB Atlas
+- **ORM / ODM:** Mongoose
+- **Styling:** Tailwind CSS, FontAwesome Icons
+- **Language:** JavaScript (ES6+)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ensure you have the following installed on your machine:
+- [Node.js](https://nodejs.org/) (v18.x or higher recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- A [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or a local MongoDB instance)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Installation & Local Setup
 
-## Learn More
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git)
+   cd ticket-app
+   Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    npm install
+    Configure Environment Variables:
+    Create a .env.local file in the root directory by copying the provided example file:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+    cp .env.example .env.local
+    Open .env.local and add your MongoDB connection string:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Code snippet
+    MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/ticket_db?retryWrites=true&w=majority
+    Run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    npm run dev
+    Open in browser:
+    Navigate to http://localhost:3000 to view the application.
+
+    Project Structure
+    Plaintext
+    ├── app/
+    │   ├── (components)/      # Reusable UI components (Nav, TicketCard, DeleteBlock, etc.)
+    │   ├── api/               # Next.js API route handlers (GET, POST, PUT, DELETE)
+    │   │   └── Tickets/
+    │   ├── TicketPage/[id]/   # Dynamic edit/create route
+    │   ├── global.css         # Custom Tailwind v4 styling & theme toggle
+    │   ├── layout.js          # Root layout wrapper
+    │   └── page.jsx           # Main dashboard displaying categorized tickets
+    ├── models/                # Mongoose schema definitions (Ticket.js)
+    ├── .env.example           # Example environment template
+    └── .env.local             # Local secret keys (ignored by Git)
+
